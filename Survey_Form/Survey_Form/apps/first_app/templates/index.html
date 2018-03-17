@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <title>Survey Form</title>
+    </head>
+    <body>
+        <div id="wrapper">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                 <h2>Dojo Survey</h2>
+                 <p>Please fill out the fields provided below.</p>
+              </div>
+            </div>
+            <form action="/process" method="POST">
+                {% csrf_token %}
+                <p>
+                    <label for="name">Your Name:</label>
+                    <input type="text" name="name" id="name">
+                </p>
+                <p>
+                    <label for="dojoLocation">Dojo Location:</label>
+                <select name="dojoLocation">
+                    <option value="Seattle">Seattle</option>
+                    <option value="DC">Washington D.C.</option>
+                    <option value="Chicago">Chicago</option>
+                    <option value="Burbank">Burbank</option>
+                </select>
+                </p>
+                <p>
+                    <label for="favLang">Favorite Language:</label>
+                <select name="favLang">
+                    <option value="Python">Python</option>
+                    <option value="Javascript">Javascript</option>
+                </select>
+                </p>
+                <p>
+                    <label for="name">Comment (optional):</label>
+                </p>
+                <p>
+                <textarea name="comments" rows=10 cols=80></textarea>
+                </p>
+                <input type="submit" class="btn btn-default" value="Submit">
+            </form>
+        </div>
+    </body>
+</html>
