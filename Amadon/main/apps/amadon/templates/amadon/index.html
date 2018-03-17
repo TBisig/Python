@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Amadon Store</h1>
+        <form action='/amadon/buy' method='post'>
+            {% csrf_token %}
+            <h4>Dojo Shirt &nbsp&nbsp $19.99
+                <select name='quantity'>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+                <input type='hidden' name='product_id' value='1015' />
+                <input type='submit' value='Buy!' />
+            </h4>     
+        </form>
+        <form action='/amadon/buy' method='post'>
+            {% csrf_token %}
+            <h4>Dojo Sweater &nbsp&nbsp $29.99
+                <select name='quantity'>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+                <input type='hidden' name='product_id' value='1015' />
+                <input type='submit' value='Buy!' />
+            </h4>     
+        </form>
+        <form action='/amadon/buy' method='post'>
+            {% csrf_token %}
+            <h4>Dojo Cup &nbsp&nbsp $9.99
+                <select name='quantity'>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+                <input type='hidden' name='product_id' value='1015' />
+                <input type='submit' value='Buy!' />
+            </h4>     
+        </form>
+        <form action='/amadon/buy' method='post'>
+            {% csrf_token %}
+            <h4>Algorithm Book &nbsp&nbsp $59.99
+                <select name='quantity'>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+                <input type='hidden' name='product_id' value='1015' />
+                <input type='submit' value='Buy!' />
+            </h4>     
+        </form>
+    
+</body>
+</html>
