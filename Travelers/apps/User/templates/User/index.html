@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	{% if messages %}
+    {% for message in messages %}
+    <p>{{message.message}}</p>
+    {% endfor %}
+	{% endif %}
+	<h1>Register</h1>
+	<form action="/Regprocess" method="POST">
+		{% csrf_token %}
+		<p>Name: <input type="text" name="Rname"></p>
+		<p>Username: <input type="text" name="Ruser"></p>
+		<p>Password: <input type="password" name="Rpass"></p>
+		<p>*Password should be at least 8 characters long</p>
+		<p>Confirm PW: <input type="password" name="RpassC"></p>
+		<p><input value='Register' type="submit" name="Rsubmit"></p>
+	</form>
+	<h1>Log In</h1>
+	<form action="/Logprocess" method="POST">
+		{% csrf_token %}
+		<p>Name: <input type="text" name="Lname"></p>
+		<p>Password: <input type="password" name="Lpass"></p>
+		<p><input value='Log In' type="submit" name="Lsubmit"></p><br>
+	</form>
+</body>
+</html>

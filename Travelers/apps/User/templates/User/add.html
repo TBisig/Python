@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h4><a href="/travels">Home</a> | <a href="/LogOut">Logout</a></h4>
+	{% if messages %}
+    {% for message in messages %}
+    <p>{{message.message}}</p>
+    {% endfor %}
+	{% endif %}
+	<h1>Add a Trip</h1>
+	<form action="/processtrip" method="POST">
+		{% csrf_token %}
+		<p>Destination: <input type="text" name="Adest"></p>
+		<p>Description: <input type="text" name="Adesc"></p>
+		<p>Travel Date From: <input type="date" name="Sdate"></p>
+		<p>Travel Date Ends: <input type="date" name="Edate"></p>
+		<input type="submit" name="Asubmit">
+	</form>
+</body>
+</html>

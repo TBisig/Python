@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h4><a href="/travels">Home</a> | <a href="/LogOut">Logout</a></h4>
+	<h2>{{Vaca.destination}}</h2>
+	<h4>Panned by: {{Vaca.creator.name}}</h4>
+	<h4>Description: {{Vaca.description}}</h4>
+	<h4>Start date: {{Vaca.startdate}}</h4>
+	<h4>End date: {{Vaca.enddate}}</h4>
+	<h3>Other user's joining the trip:</h3>
+	{%for x in Vaca2%}
+	<p>{{x.name}}</p>
+	{%endfor%}
+</body>
+</html>
