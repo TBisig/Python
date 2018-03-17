@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {% if messages %}
+    {% for message in messages %}
+    <p>{{message.message}}</p>
+    {% endfor %}
+    {% endif %}
+    <h1>Register</h1>
+    <form action="register" method="POST">
+        {% csrf_token %}
+        <p>Name: <input type="text" name="Rname"></p>
+        <p>Alias: <input type="text" name="Ruser"></p>
+        <p>Email: <input type="text" name="Remail"></p>
+        <p>Password: <input type="password" name="Rpass"></p>
+        <p>*Password should be at least 8 characters long</p>
+        <p>Confirm PW: <input type="password" name="RpassC"></p>
+        <p>Date of Birth: <input type="date" name="birthdate"></p>
+        <p><input value='Register' type="submit" name="Rsubmit"></p>
+    </form>
+    <h1>Log In</h1>
+    <form action="/login" method="POST">
+        {% csrf_token %}
+        <p>Email: <input type="text" name="Lemail"></p>
+        <p>Password: <input type="password" name="Lpass"></p>
+        <p><input value='Log In' type="submit" name="Lsubmit"></p><br>
+</body>
+</html>
