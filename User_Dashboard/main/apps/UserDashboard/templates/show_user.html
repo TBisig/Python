@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Test App</h1>
+    <a href='/dashboard'>Dashboard</a>
+    <a href='/users/edit'>Profile</a>
+    <a href='/signoff'>Sign Off</a>
+    <h1>{{ user.first_name}} {{user.last_name}}</h1>
+    <p>Registered At: {{user.created_at}}</p>
+    <p>User ID: {{user.id}}</p>
+    <p>Email address: {{user.email}}</p>
+    <p>Description: {{user.description}}</p>
+    <h2>Leave a message for {{ user.first_name }}</h2>
+    <form action='/submit_message' method='post'>
+        {% csrf_token %}
+        <input type='hidden' name='user_id' value='{{user.id}}' />
+        <input type='hidden' name='author_id' value='{{request.session.user_id}}' />
+        <input type='textarea' name='text' />
+        <input type='submit' value='Post' />
+    </form>
+    {% for message in messages %}
+        <p>{{ message.author.first_name }} wrote:    {{ message.created_at }}</p>
+        <p>{{ message.text }}</p>
+        {% for comment in message.comments.all %}
+            <p>{{ comment.author.first_name }} wrote:    {{ comment.created_at }}</p>
+            <p>{{ comment.text }}</p>
+        {% endfor %}
+        <form action='/submit_comment' method='post'>
+            {% csrf_token %}
+            <input type='hidden' name='user_id' value='{{user.id}}' />
+            <input type='hidden' name='author_id' value='{{request.session.user_id}}' />
+            <input type='hidden' name='message_id' value='{{m.id}}' />
+            <input type='textarea' name='text' />
+            <input type='submit' value='Post' />
+        </form>
+    {% endfor %}
+</body>
+</html>

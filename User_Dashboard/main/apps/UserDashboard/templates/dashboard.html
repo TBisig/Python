@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Test App</h1>
+    <a href='/dashboard'>Dashboard</a>
+    <a href='/users/edit'>Profile</a>
+    <a href='/signoff'>Sign Off</a>
+    {% if request.session.user_level == 'admin' %}
+        <h1>Manage Users</h1>
+        <form action='../users/new' method='post'>
+            {% csrf_token %}
+            <input type='submit' value='Add new' />
+        </form>
+    {% else %}
+        <h1>All Users</h1>
+    {% endif %}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Created At</th>
+            <th>User Level</th>
+            {% if request.session.user_level == 'admin' %}
+                <th>Actions</th>
+            {% endif %}
+        </tr>
+        {% for u in users %}
+            <tr>
+                <td>{{ u.id }}</td>
+                <td>{{ u.first_name }} {{u.last_name}}</td>
+                <td>{{ u.email }}</td>
+                <td>{{ u.created_at }}</td>
+                <td>{{ u.user_level }}</td>
+                {% if request.session.user_level == 'admin' %}
+                    <td>
+                        <form action='/users/edit/{{u.id}}' method='post'>
+                            {% csrf_token %}
+                            <input type='submit' value='edit' />
+                        </form>
+                        <form action='/users/delete/{{u.id}}' method='post'>
+                            {% csrf_token %}
+                            <input type='submit' value='remove' onclick="return confirm('Are you sure?')" />
+                        </form>
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
