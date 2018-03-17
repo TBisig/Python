@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Book</title>
+    </head>
+    <body>
+        <a href='/books'>Home</a>
+        <a href='/logout'>Logout</a>
+        <h2>{{book.title}}</h1>
+        <h3>Author: {{book.author}}</h2>
+        <h2> Reviews: </h2>
+        {% for review in reviews %}
+            {% with ''|center:review.rating as range %}
+                {% for i in range %}
+                    ★
+                {% endfor %}
+            {% endwith %}
+            {% with ''|center:review.inverse_rating as range %}
+                {% for i in range %}
+                    ☆
+                {% endfor %}
+            {% endwith %}
+            <p><a href='/users/{{review.user.id}}'>{{review.user.first_name}}</a> says: {{review.review}}</p>
+            <p>Posted on {{review.created_at}}</p>
+        {% endfor %}
+
+        <form action='/add_review' method='post'>
+            <input type='hidden' name='book_id' value='{{book.id}}' />
+            {% csrf_token %}
+            {{ review_form }}
+            <label for='rating'>Rating:</label>
+            <select id='rating' name='rating'>
+                <option value='0'>0</option>
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+                <option value='3'>3</option>
+                <option value='4'>4</option>
+                <option value='5'>5</option>
+            </select>
+            <input type='submit' value='Submit Review' />
+        </form>
+    </body>
+</html>

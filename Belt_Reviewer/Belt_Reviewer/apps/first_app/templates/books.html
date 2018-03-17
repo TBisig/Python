@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Books</title>
+    </head>
+    <body>
+        <p>Welcome, {{user.first_name}}!</p>
+        <a href='/books/add'>Add Book and Review</a>
+        <a href='/logout'>Logout</a>
+        <h2>Recent Book Reviews</h2>
+        {% for review in recent_reviews %}
+        <p><a href='/books/{{review.book.id}}'>{{review.book.title}}</a></p>
+        <p>Rating: {{review.rating}}</p>
+        <p>
+        {% with ''|center:review.rating as range %}
+            {% for i in range %}
+                ★
+            {% endfor %}
+        {% endwith %}
+        {% with ''|center:review.inverse_rating as range %}
+            {% for i in range %}
+                ☆
+            {% endfor %}
+        {% endwith %}
+
+
+
+        </p>
+        <p><a href='/users/{{review.user.id}}'>{{review.user.first_name}}</a> says: {{review.review}}</p>
+        <p>Posted on {{review.created_at}}</p>
+        {% endfor %}
+        <h2>Other Books with Reviews</h2>
+        {% for book in all_books %}
+        <p><a href='/books/{{book.id}}'>{{book.title}}</a></p>
+        {% endfor %}
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>Add a Book</title>
+    </head>
+    <body>
+        <a href='/books'>Home</a>
+        <a href='/logout'>Logout</a>
+        <h1>Add a New Book Title and a Review:</h1>
+        <form action='/add_book_and_review' method='post'>
+            {% csrf_token %}
+            <p>Book Title:<input type='text' name='title' /></p>
+            <p>Author:</p>
+            <p>Choos from the list:
+                <select name='select_author' />
+                    <option value=''></option>
+                    {% for author in authors %}
+                    <option value='{{author.author}}'>{{author.author}}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p>Or add a new author:<input type='text' name='text_author' /></p>
+            <p>Review:<input type='textarea' name='review' /></p>
+            <select name='rating'>
+                <option value='0'>0</option>
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+                <option value='3'>3</option>
+                <option value='4'>4</option>
+                <option value='5'>5</option>
+            </select>
+            <input type='submit' value='Add Book and Review' />
+        </form>
+    </body>
+</html>
