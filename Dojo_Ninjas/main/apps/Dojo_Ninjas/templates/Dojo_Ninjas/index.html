@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Students</h1>
+    {% for ninja in ninjas %}
+        <h6>{{ninjas.first_name}}</h6>
+        <h6>{{ninjas.last_name}}</h6>
+    {% endfor %}
+
+    <form action="/ninjas" method="POST">
+        {% csrf_token %}
+        <label for="">First Name</label>
+        <input type="text" name="first_name">
+        <label for="">Last Name</label>
+        <input type="text" name="last_name">
+        <input type="submit" value="submit">    
+    </form>
+</body>
+</html>
